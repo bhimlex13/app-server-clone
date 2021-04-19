@@ -3,7 +3,6 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import { User } from '../app-server/models/User.js';
 
 dotenv.config( {path:'.env'} );
 // require('dotenv').config(); ?? not working || err: require undefined
