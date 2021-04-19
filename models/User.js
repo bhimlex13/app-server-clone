@@ -1,3 +1,5 @@
+// User Model
+
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
@@ -22,5 +24,4 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model('user',userSchema);
-module.exports = User;
+export const User = mongoose.model('user',userSchema);

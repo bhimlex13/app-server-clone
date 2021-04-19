@@ -2,15 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-// import User from './models/User';
+
+import { User } from '../app-server/models/User.js';
 
 dotenv.config( {path:'.env'} );
 // require('dotenv').config(); ?? not working || err: require undefined
 
+import usersRoutes from './routes/users.js';
 
 const app = express();
 
+app.use('/api/users', usersRoutes);
+
 app.use(cors());
+app.use(express.json());
 
 const connectDB = async () => {
     try{
