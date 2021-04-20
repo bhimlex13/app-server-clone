@@ -4,6 +4,7 @@ import express from 'express';
 import { register } from '../controllers/user.js';
 
 
+
 const router = express.Router();
 router.use(express.json());
 // Primary user routes
@@ -12,7 +13,20 @@ router.use(express.json());
 
 
 // Create a new user
-router.post('/register',register);
+//router.post('/register',register);
+//res.send(UserController.register(userData));
+
+// Create a new user
+router.post('/register', (req, res) => {
+    const userData = req.body;
+    register(userData).then(result => {
+      res.send({
+          message: 'New user has been created',
+          data: result
+      });
+    });
+});
+
 
 // Retrieve all users
 

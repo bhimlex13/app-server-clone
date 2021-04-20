@@ -3,7 +3,10 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 dotenv.config( {path:'.env'} );
 // require('dotenv').config(); ?? not working || err: require undefined
 //
@@ -16,23 +19,33 @@ app.use('/api/users', usersRoutes);
 app.use(cors());
 app.use(express.json());
 
-const connectDB = async () => {
-    try{
-        const con = await mongoose.connect(process.env.DB_CONNECTION_STRING, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-        })
-        console.log(`Database connection established. [${con.connection.name}]`);
-    } catch(err) {
-        console.log(err);
-        process.exit(1);
-    }
-}
+// const connectDB = async () => {
+//     try{
+//         const con = await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//             useFindAndModify: false
+//         })
+//         console.log(`Database connection established. [${con.connection.name}]`);
+//     } catch(err) {
+//         console.log(err);
+//         process.exit(1);
+//     }
+// }
+
+// //Invoke ConnectDB(); to establish MongoBD Connection
+// connectDB();
 
 
-//Invoke ConnectDB(); to establish MongoBD Connection
-connectDB();
+let connectionString = process.env.DB_CONNECTION_STRING;
+let options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+};
+mongoose.connect(connectionString, options);
+mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
+mongoose.connection.once('open', () => console.log('Database connetion established'));
 
 
 const port = process.env.PORT || 3000;
