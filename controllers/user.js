@@ -38,3 +38,4 @@ import bcrypt from 'bcrypt';
         return (err) ? false : true; // return a boolean
     });
 };
+//

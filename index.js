@@ -3,10 +3,6 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 dotenv.config( {path:'.env'} );
 // require('dotenv').config(); ?? not working || err: require undefined
 //
