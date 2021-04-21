@@ -38,4 +38,13 @@ import bcrypt from 'bcrypt';
         return (err) ? false : true; // return a boolean
     });
 };
+
+
+export const checkEmail = (emailAddress) => {
+    return User.find({ emailAddress }).then(result => {
+        return result.length > 0 ? true: false;
+    });
+}
+
+
 //

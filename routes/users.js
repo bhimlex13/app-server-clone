@@ -1,7 +1,7 @@
 //Users Router
 
 import express from 'express';
-import { register } from '../controllers/user.js';
+import { register, checkEmail } from '../controllers/user.js';
 
 
 
@@ -18,13 +18,13 @@ router.use(express.json());
 
 // Create a new user
 router.post('/register', (req, res) => {
-    const userData = req.body;
-    register(userData).then(result => {
-      res.send({
-          message: 'New user has been created',
-          data: result
-      });
+  const userData = req.body;
+  register(userData).then(result => {
+    res.send({
+      message: 'New user has been created',
+      data: result
     });
+  });
 });
 
 
@@ -43,5 +43,17 @@ router.post('/register', (req, res) => {
 //Delete user by ID
 
 // router.delete();
+
+// check if user (email) already exist
+
+router.post('/check-email', (req, res) => {
+  const { emailAddress } = req.body;
+  checkEmail(emailAddress).then(result => {
+    res.send({
+      message: 'User already existed',
+      data: result
+    });
+  });
+});
 
 export default router;
