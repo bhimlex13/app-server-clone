@@ -13,6 +13,13 @@ const app = express();
 app.use('/api/users', usersRoutes);
 
 app.use(cors());
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin","Origin , X-Requested-With, Content-Type, Accept");
+    next();
+})
+
 app.use(express.json());
 
 const connectDB = async () => {
@@ -32,16 +39,6 @@ const connectDB = async () => {
 //Invoke ConnectDB(); to establish MongoBD Connection
 connectDB();
 
-
-// let connectionString = process.env.DB_CONNECTION_STRING;
-// let options = {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false
-// };
-// mongoose.connect(connectionString, options);
-// mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
-// mongoose.connection.once('open', () => console.log('Database connetion established'));
 
 
 const port = process.env.PORT || 3000;
