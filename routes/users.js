@@ -1,7 +1,7 @@
 //Users Router
 
 import express from 'express';
-import { register, checkEmail } from '../controllers/user.js';
+import { register, checkEmail, login } from '../controllers/user.js';
 
 
 
@@ -55,5 +55,17 @@ router.post('/check-email', (req, res) => {
     });
   });
 });
+
+// Login a user
+router.post('/login', (req, res) => {
+  const userData = req.body;
+  login(userData).then(result => {
+    res.send({
+      data: result
+    });
+  });
+})
+
+
 
 export default router;
