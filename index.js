@@ -10,17 +10,9 @@ import usersRoutes from './routes/users.js';
 
 const app = express();
 
-app.use('/api/users', usersRoutes);
 
 app.use(cors());
-
-let allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Headers', "*");
-    next();
-  };
-
-app.use(allowCrossDomain);
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -44,6 +36,7 @@ connectDB();
 const port = process.env.PORT || 3000;
 
 
+app.use('/api/users', usersRoutes);
 // root route
 
 app.get('/',(req,res) => {
