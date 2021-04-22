@@ -11,8 +11,9 @@ import usersRoutes from './routes/users.js';
 const app = express();
 
 
+
 app.use(cors());
-app.options('*', cors());
+
 
 app.use(express.json());
 
@@ -34,7 +35,6 @@ const connectDB = async () => {
 connectDB();
 
 const port = process.env.PORT || 3000;
-
 
 app.use('/api/users', usersRoutes);
 // root route
