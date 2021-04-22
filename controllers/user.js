@@ -24,27 +24,52 @@ import bcrypt from 'bcrypt';
 //     });  
 //  }
 
- export const register = (userData) => {
-    let {firstName, lastName, emailAddress, password, mobileNumber} = userData;
-    password = bcrypt.hashSync(password, 10); // encrypt the plain text password
-    let newUser = new User({
-        firstName, 
-        lastName, 
-        emailAddress, 
-        password,
-        mobileNumber
-    });
-    return newUser.save().then((user, err) => {
-        return (err) ? false : true; // return a boolean
-    });
+export const register = (userData) => {
+  let {firstName, lastName, emailAddress, password, mobileNumber} = userData;
+  password = bcrypt.hashSync(password, 10); // encrypt the plain text password
+  let newUser = new User({
+    firstName, 
+    lastName, 
+    emailAddress, 
+    password,
+    mobileNumber
+  });
+  return newUser.save().then((user, err) => {
+    return (err) ? false : true; // return a boolean
+  });
 };
 
 
 export const checkEmail = (emailAddress) => {
-    return User.find({ emailAddress }).then(result => {
-        return result.length > 0 ? true: false;
-    });
+  return User.find({ emailAddress }).then(result => {
+    return result.length > 0 ? true: false;
+  });
 }
 
 
+export const login = (userData) => {
+  const { emailAddress, password } = userData;
+  // Retrive the user document via email address
+  
+  return User.findOne({ emailAddress }).then(user => {
+    
+    // user: model (document) or null
+    
+    // If user account was not found
+    
+    if(user === null) {
+      return false
+    } else {
+      // user document was found
+      // Check if the password provided will matched the password in the user document
+
+      const isPasswordMatched = bcrypt.compareSync(password, user.password);
+      if(isPasswordMatched){
+        return true;
+      }else {
+        return false;
+      }
+    }    
+  });
+};
 //
