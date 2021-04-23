@@ -34,6 +34,11 @@ router.post('/register', (req, res) => {
 
 //Retrieve a specific user by ID
 
+router.get('details', (req, res) => {
+  
+
+});
+
 // router.get();
 
 //Update user by ID
@@ -60,8 +65,10 @@ router.post('/check-email', (req, res) => {
 router.post('/login', (req, res) => {
   const userData = req.body;
   login(userData).then(result => {
+    const { data , userDetails } = result;
     res.send({
-      data: result
+     data,
+     userDetails
     });
   });
 })
