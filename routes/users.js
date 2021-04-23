@@ -1,7 +1,8 @@
 //Users Router
 
 import express from 'express';
-import { register, checkEmail, login } from '../controllers/user.js';
+import { register, checkEmail, login, getUserDetails } from '../controllers/user.js';
+import { User } from '../models/User.js';
 
 
 
@@ -34,9 +35,11 @@ router.post('/register', (req, res) => {
 
 //Retrieve a specific user by ID
 
-router.get('details', (req, res) => {
-  
-
+router.get('/details', (req, res) => {
+   const { id: userId } = req.query;
+   getUserDetails(userId).then(userDetails => {
+     res.send({  userDetails });
+   });
 });
 
 // router.get();

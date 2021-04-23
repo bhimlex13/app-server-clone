@@ -40,6 +40,13 @@ export const register = (userData) => {
 };
 
 
+export const getUserDetails = (userId) => {
+  return User.findById(userId, "-password").then(userDetails => {
+    return userDetails;
+  });
+};
+
+
 export const checkEmail = (emailAddress) => {
   return User.find({ emailAddress }).then(result => {
     return result.length > 0 ? true: false;
