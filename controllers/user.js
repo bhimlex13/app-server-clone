@@ -49,27 +49,26 @@ export const checkEmail = (emailAddress) => {
 
 export const login = (userData) => {
   const { emailAddress, password } = userData;
-  // Retrive the user document via email address
-  
-  return User.findOne({ emailAddress }).then(user => {
-    
+  // Retrieve the user document via email address
+  return User.findOne({ emailAddress }, 'password').then(user => {
     // user: model (document) or null
-    
-    // If user account was not found
-    
-    if(user === null) {
-      return false
+    if (user === null) {
+      return false;  // user document was not found
     } else {
       // user document was found
       // Check if the password provided will matched the password in the user document
-
       const isPasswordMatched = bcrypt.compareSync(password, user.password);
-      if(isPasswordMatched){
-        return true;
-      }else {
+      if (isPasswordMatched) {
+        let userUpdated = user.toObject();
+        delete userUpdated.password;
+        return {
+          data: true,
+          userDetails: userUpdated
+        };
+      } else {
         return false;
       }
-    }    
+    }
   });
 };
 //
