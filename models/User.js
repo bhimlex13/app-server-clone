@@ -21,7 +21,15 @@ const userSchema = new mongoose.Schema({
     },
     mobileNumber: {
         type: String
-    }
+    },
+    enrollments: [{
+        courseId: String,
+        enrolledOn: {
+            type: Date,
+            default: new Date()
+        },
+        status: String
+    }]
 });
 
 
