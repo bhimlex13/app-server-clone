@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config( {path:'.env'} );
-// require('dotenv').config(); ?? not working || err: require undefined
 
 import usersRoutes from './routes/users.js';
 
@@ -28,14 +27,14 @@ const connectDB = async () => {
     }
 }
 
-//Invoke ConnectDB(); to establish MongoBD Connection
+//Invoke ConnectDB(); || to establish MongoBD Connection
 connectDB();
 
 const port = process.env.PORT || 3000;
 
 app.use('/api/users', usersRoutes);
-// root route
 
+// root route
 app.get('/',(req,res) => {
     res.status(200);
     res.json({
@@ -44,7 +43,7 @@ app.get('/',(req,res) => {
 });
 
 
-app.listen(port, ()=> {
+app.listen(port, () => {
     console.log(`Application server is running at http://localhost:${port}`);
 });
 
