@@ -1,7 +1,7 @@
 //Courses Router
 
 import express from 'express';
-import {  } from '../controllers/course.js';
+import { getAll } from '../controllers/course.js';
 
 
 
@@ -9,13 +9,14 @@ const router = express.Router();
 router.use(express.json());
 
 
-
+// Return all courses
 router.get('/', (req, res) => {
-    res.send({
-        message: "Course Route"
-    })
- });
+    getAll().then(courses => {
+        res.send({ courses })
+    });
+});
 
+// Create a new course
 
 
 
