@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config( {path:'.env'} );
 
 import usersRoutes from './routes/users.js';
+import coursesRoutes from './routes/courses.js';
 
 const app = express();
 
@@ -33,6 +34,8 @@ connectDB();
 const port = process.env.PORT || 3000;
 
 app.use('/api/users', usersRoutes);
+
+app.use('/api/courses', coursesRoutes);
 
 // root route
 app.get('/',(req,res) => {
