@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
     mobileNumber: {
         type: String
     },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
     enrollments: [{
         courseId: String,
         enrolledOn: {
