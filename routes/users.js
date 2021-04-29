@@ -1,7 +1,6 @@
 //Users Router
-
 import express from 'express';
-import { register, checkEmail, login, getUserDetails } from '../controllers/user.js';
+import { register, checkEmail, login, getUserDetails, enroll } from '../controllers/user.js';
 // import { User } from '../models/User.js';
 
 
@@ -65,5 +64,15 @@ router.post('/login', (req, res) => {
 })
 
 
+// Enroll a users to a course
+router.post('/enroll', (req, res) => {
+  // console.dir(req.body);
+  const { userId, courseName } = req.body;
+  enroll(userId, courseName).then(result => {
+    res.send({
+      message: result
+    });
+  });
+});
 
 export default router;

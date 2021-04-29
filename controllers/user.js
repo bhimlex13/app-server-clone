@@ -1,6 +1,7 @@
 // controller
 import { User } from '../models/User.js';
 import bcrypt from 'bcrypt';
+import { Course } from '../models/Course.js';
 
 
 // Create new user
@@ -56,5 +57,28 @@ export const login = (userData) => {
         return false;
       }
     }
+  });
+};
+
+
+
+export const enroll =  (userId, courseName) =>  {
+
+  return   User.findById(userId).then(user => {
+    // Insert a new document to enrollments array
+     user.enrollments.push({
+      courseName
+    });
+    return user.save().then((_, err) => {
+      // Insert new enrollee to enrollees array of a course
+      return Course.find({ name: courseName }).then(course => {
+         course.enrollees.push({
+          userId
+        });
+        return course.save().then((_, err) => {
+          return err ? false : true;
+        });
+      });
+    });
   });
 };

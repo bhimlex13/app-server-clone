@@ -5,34 +5,34 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String
-    },
-    lastName: {
+      },
+      lastName: {
         type: String
-    },
-    emailAddress: {
+      },
+      emailAddress: {
         type: String
-    },
-    password: {
+      },
+      password: {
         type: String
-    },
-    isAdmin: {
+      },
+      isAdmin: {
         type: Boolean,
         default: false
-    },
-    mobileNumber: {
+      },
+      mobileNumber: {
         type: String
-    },
-    enrollments: [{
-        courseId: String,
+      },
+      enrollments: [{
+        courseName: String,
         enrolledOn: {
-            type: Date,
-            default: new Date()
+          type: Date,
+          default: new Date()
         },
         status: {
-            type: String,
-            default: "active"
+          type: String,
+          default: "active"
         }
-    }]
+      }]
 });
 
 

@@ -12,7 +12,7 @@ router.use(express.json());
 // Return all courses
 router.get('/', (req, res) => {
     // console.dir(req.query);
-
+    
     if (req.query.id) {
        getCourseDetails(req.query.id).then(course => {
           res.send({ course });
@@ -30,7 +30,9 @@ router.get('/', (req, res) => {
 
 
 
-// Create a new course
+// Enroll a users to a course
+
+
 
 
 
