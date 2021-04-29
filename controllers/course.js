@@ -7,3 +7,10 @@ export const getAll = () => {
         return courses;
     });
 };
+
+
+export const getCourseDetails = (courseId) => {
+  return Course.findById(courseId).then(course => {
+      return course;
+  });  
+};
