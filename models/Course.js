@@ -12,9 +12,9 @@ const courseSchema = new mongoose.Schema({
     price: {
         type: Number
     },
-    isActive: {
-        type: Boolean,
-        default: true
+    status: {
+        type: String,
+        default: "active"
     },
     createdOn: {
         type: Date,
