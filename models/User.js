@@ -22,17 +22,16 @@ const userSchema = new mongoose.Schema({
     mobileNumber: {
         type: String
     },
-    status: {
-        type: String,
-        default: "active"
-    },
     enrollments: [{
         courseId: String,
         enrolledOn: {
             type: Date,
             default: new Date()
         },
-        status: String
+        status: {
+            type: String,
+            default: "active"
+        }
     }]
 });
 

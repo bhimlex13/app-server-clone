@@ -12,10 +12,6 @@ const courseSchema = new mongoose.Schema({
     price: {
         type: Number
     },
-    status: {
-        type: String,
-        default: "active"
-    },
     createdOn: {
         type: Date,
         default: new Date()
@@ -26,7 +22,10 @@ const courseSchema = new mongoose.Schema({
             type: Date,
             default: new Date()
         },
-        status: String
+        status: {
+            type: String,
+            default: "active"
+        }
     }]
 });
 
