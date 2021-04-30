@@ -15,10 +15,15 @@ const courseSchema = new mongoose.Schema({
       default: new Date()
     },
     enrollees: [{
+<<<<<<< HEAD
       userId: String
+=======
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+>>>>>>> develop
     }]
 });
 
 
 
-export const Course = mongoose.model('course',courseSchema);
+export const Course = mongoose.model('Course',courseSchema);

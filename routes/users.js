@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
 
 // Retrieve all users
 
-// router.get();
+// router.get();git
 
 //Retrieve a specific user by ID
 router.get('/details', (req, res) => {
@@ -67,12 +67,16 @@ router.post('/login', (req, res) => {
 // Enroll a users to a course
 router.post('/enroll', (req, res) => {
   // console.dir(req.body);
-  const { userId, courseName } = req.body;
-  enroll(userId, courseName).then(result => {
+  const { userId, courseId } = req.body;
+   enroll(userId, courseId).then(result => {
     res.send({
       message: result
     });
   });
 });
+
+
+
+
 
 export default router;

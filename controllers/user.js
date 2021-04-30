@@ -62,23 +62,22 @@ export const login = (userData) => {
 
 
 
-export const enroll =  (userId, courseName) =>  {
+export const enroll = async (userId, courseId) => {
 
-  return   User.findById(userId).then(user => {
-    // Insert a new document to enrollments array
-     user.enrollments.push({
-      courseName
-    });
-    return user.save().then((_, err) => {
-      // Insert new enrollee to enrollees array of a course
-      return Course.find({ name: courseName }).then(course => {
-         course.enrollees.push({
-          userId
-        });
-        return course.save().then((_, err) => {
-          return err ? false : true;
-        });
-      });
-    });
+
+  let userData = await User.findById(userId).exec();
+  
+  let courseData = await Course.findById(courseId).exec();
+  
+  userData.enrollments.push({
+    courseName: courseData.name
   });
+
+  return userData.save().then((_,err) => {
+    
+     courseData.enrollees.push(userId);
+     return courseData.save().then((_,err) => {
+       return err ? false : true;
+     })
+  })
 };
