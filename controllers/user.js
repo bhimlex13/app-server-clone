@@ -1,6 +1,7 @@
 // controller
 import { User } from '../models/User.js';
 import bcrypt from 'bcrypt';
+import { Course } from '../models/Course.js';
 
 
 // Create new user
@@ -57,4 +58,26 @@ export const login = (userData) => {
       }
     }
   });
+};
+
+
+
+export const enroll = async (userId, courseId) => {
+
+
+  let userData = await User.findById(userId).exec();
+  
+  let courseData = await Course.findById(courseId).exec();
+  
+  userData.enrollments.push({
+    courseName: courseData.name
+  });
+
+  return userData.save().then((_,err) => {
+    
+     courseData.enrollees.push(userId);
+     return courseData.save().then((_,err) => {
+       return err ? false : true;
+     })
+  })
 };

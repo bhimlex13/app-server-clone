@@ -1,7 +1,7 @@
 //Users Router
 
 import express from 'express';
-import { register, checkEmail, login, getUserDetails } from '../controllers/user.js';
+import { register, checkEmail, login, getUserDetails, enroll } from '../controllers/user.js';
 // import { User } from '../models/User.js';
 
 
@@ -63,6 +63,20 @@ router.post('/login', (req, res) => {
     });
   });
 })
+
+
+// Enroll a users to a course
+router.post('/enroll', (req, res) => {
+  // console.dir(req.body);
+  const { userId, courseId } = req.body;
+   enroll(userId, courseId).then(result => {
+    res.send({
+      message: result
+    });
+  });
+});
+
+
 
 
 
