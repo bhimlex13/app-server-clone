@@ -15,12 +15,8 @@ const courseSchema = new mongoose.Schema({
       default: new Date()
     },
     enrollees: [{
-<<<<<<< HEAD
-      userId: String
-=======
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
->>>>>>> develop
     }]
 });
 
